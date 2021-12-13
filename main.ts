@@ -442,6 +442,48 @@ canAttack = false
 swordOut = false
 info.setLife(3)
 guide.sayText("Kill 10 enemies")
+game.onUpdateInterval(2750, function () {
+    if (fightGhost) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . 7 9 7 . . . 7 7 9 9 . 
+            . . . . 7 9 9 7 7 . 9 7 . . . . 
+            . . . . 7 7 7 7 9 . . . . . . . 
+            . . . . 9 9 7 9 7 . 7 7 9 7 . . 
+            . . . . . 9 7 7 . . . . . 9 7 9 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, ghost, randint(-50, -60), 0)
+    }
+    if (fightDino) {
+        projectile = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . 2 3 3 3 2 2 2 . . . . . 
+            . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
+            . . . 2 1 1 1 1 1 1 1 1 1 1 1 . 
+            . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
+            . . . . 2 3 3 3 3 2 2 . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, dino, randint(-50, -60), 0)
+    }
+})
 game.onUpdate(function () {
     if (controller.right.isPressed()) {
         hero.setImage(img`
@@ -513,47 +555,9 @@ game.onUpdate(function () {
         ghost.destroy()
         safeScene()
         info.changeScoreBy(1)
-    }
-})
-game.onUpdateInterval(4000, function () {
-    if (fightGhost) {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . 7 9 7 . . . 7 7 9 9 . 
-            . . . . 7 9 9 7 7 . 9 7 . . . . 
-            . . . . 7 7 7 7 9 . . . . . . . 
-            . . . . 9 9 7 9 7 . 7 7 9 7 . . 
-            . . . . . 9 7 7 . . . . . 9 7 9 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, ghost, randint(-50, -60), 0)
-    }
-    if (fightDino) {
-        projectile = sprites.createProjectileFromSprite(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . 2 3 3 3 2 2 2 . . . . . 
-            . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
-            . . . 2 1 1 1 1 1 1 1 1 1 1 1 . 
-            . . . 2 3 1 1 1 1 1 3 3 2 2 2 . 
-            . . . . 2 3 3 3 3 2 2 . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, dino, randint(-50, -60), 0)
+        game.splash("Excellent Work!")
+        game.splash("The guide has a new")
+        game.splash("Challenge for you!")
+        guide.sayText("Kill 15 enemies")
     }
 })
